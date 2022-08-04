@@ -1,4 +1,5 @@
 
+
 # -*- coding: utf-8 -*-
 """
 Created on Sun Jul 31 14:37:46 2022
@@ -23,8 +24,8 @@ system("mode 110,30")
 system("title "+gametitle)
 
 #this will clear the screen, like in BASIC, teehee.
-def cls():
-    system('cls')
+#def cls():
+#    system('cls')
 
 #Empty character name, this will be entered by the user.
 character_name = None
@@ -39,7 +40,7 @@ character_life = None
 
 
 #call the clear screen function.
-cls()
+#cls()
 print("Castle Dungeons - An interactive fiction game in Python.")
 
 def Intro():
@@ -59,7 +60,7 @@ Intro()
 
 #Now we create the characters
 def create_character():
-    cls()
+   # cls()
     #specify global bc we want it to be accessible at any time.
     global character_name
     #a multi line string
@@ -88,7 +89,7 @@ def create_character():
             print("Not a valid choice, try again")
             
             
-    cls()
+    #cls()
     global character_class
     while character_class is None:
         class_choice=input("""
@@ -107,7 +108,7 @@ create_character()
 
 
 def create_character_skill_sheet():
-    cls()
+   # cls()
     global character_name, character_class, character_name, character_strength, character_dexterity, character_magic, character_life
     print("""
     Now let's determine your character's skills, which you will use throughout the game.
@@ -164,7 +165,7 @@ def create_character_skill_sheet():
 create_character_skill_sheet()
 
 def modify_skills():
-    cls()
+    #cls()
     global character_strength, character_dexterity, character_life
     print("To modify your skills, roll a six face die for each of your skills, and the game will add your score to the relevant skill")
     
@@ -182,7 +183,7 @@ def modify_skills():
     print(f"You rolled: {roll}")
     character_life=character_life+roll
     input("Press Enter to continue...")
-    cls()
+   # cls()
     print("""
     Congratulations! You have completed your character creation!
     Your final character sheet is:
@@ -208,7 +209,7 @@ def modify_skills():
 modify_skills()
 
 def scene_3():
-    cls()
+  #  cls()
     choice = None
     while choice is None:
         user_input=input("""
@@ -232,7 +233,7 @@ def scene_3():
             """)
 
 def scene_1():
-    cls()
+    #cls()
     choice=None
     while choice is None:
         print("Welcome")
@@ -252,7 +253,7 @@ def scene_1():
         if user_input=="1" or user_input=="turn left":
             choice="1"
             random.choice(Scene)()
-            
+            #choice(Scene)
         elif user_input=="2" or user_input=="turn right":
             choice="2"
             random.choice(Scene)()
@@ -263,14 +264,16 @@ def scene_1():
                   """)
 
 def combat_2():
-    cls()
+   # cls()
     global character_life
     print("An evil Elf finds you and is waiting to kill you with his bow!")
     input("Press Enter to combat...")
-    
+    # create a python list, similar to an array. First is strenth,life of orc.
+    #this is a simple way to create a monster sheet.
     elf=[2,14]
-    
-  
+    #or not and, otherwise it could go on forever!LOL.
+   # while orc[1] > 0 or character_life > 0:
+    #while elf[1] > 0 or character_life>0:
     while elf[1] > 0:
         char_roll=randint(1,6)
         print(f"You rolled: {char_roll}")
@@ -286,12 +289,12 @@ def combat_2():
             
         else:
             print("The Elf hits you!")
-           
+            #damage roll for the character
             character_life = character_life - randint(1,6)
         if elf[0] < 0:
             print("You win!")
             input("Press Enter to exit the game")
-            
+            #break
     if character_life > 0:
         #adding ability to take character_life from monster defeated.
         character_life = character_life + (elf[0])
@@ -299,13 +302,15 @@ def combat_2():
         #print("You defeated the Elf, Congratulations! You still have",str(character_life), "Life points! Some of the Elf's life points transferred to you! You may now go to the pub and order some refreshing strawberry lemonade :)")
         random.choice(Scene)()
         input("Press Enter to exit the game")
-        
+        #elif orc[1] < 0:
+   #     print("You defeated the orc, Woohoo!")
+    #    input("Press Enter to exit the game")
     else:
         print("You lost... your friends will never be freed... and you're dead.")
         input("Press Enter to exit the game")
 
 def scene_5():
-    cls()
+   # cls()
     choice = None
     while choice is None:
         user_input=input("""
@@ -314,7 +319,7 @@ def scene_5():
     What do you do?
 
     1 - Continue walking
-    2 - Rest by the large tree
+    2 - Rest at the corner of the room
 
     > """)
         if user_input=="1" or user_input=="continue":
@@ -329,7 +334,7 @@ def scene_5():
             """)
 
 def fairy_1():
-    cls()
+    #cls()
     global character_life
     global character_strength
     global character_magic
@@ -341,19 +346,29 @@ def fairy_1():
     
     if character_race == "Elf":
         character_magic = character_magic + randint(1, 2)
+        print(f"""
+    You encounter a beautiful fairy. 
+    She tells you her glass of water will refresh you. You reach for the glass and drink it all. You start to feel a little funny. The world starts spinning. You close your eyes.
+    When you open them, she tells you your life has been restored and you have gone up a level! 
+    """)
     elif character_race == "Wizard":
         character_magic = character_magic + randint(1, 5)
+        print(f"""
+    You encounter a beautiful fairy. 
+    She tells you her glass of water will refresh you. You reach for the glass and drink it all. You start to feel a little funny. The world starts spinning. You close your eyes.
+    When you open them, she tells you your life has been restored and you have gone up a level!
+    """)
     else:
         print("""
     You encounter a beautiful fairy. 
     She tells you her glass of water will refresh you. You reach for the glass and drink it all. You start to feel a little funny. The world starts spinning. You close your eyes.
     When you open them, she tells you your life has been restored and you have gone up a level!
     """)
-    input("Press Enter to continue...")
+    input("Press Enter to exit...")
 
         
 def scene_2():
-    cls()
+   # cls()
     choice = None
     while choice is None:
         user_input=input("""
@@ -379,7 +394,7 @@ def scene_2():
 
             
 def skill_check_1():
-    cls()
+    #cls()
     print("A giant rock falls from the ceiling, roll a die to see if you can dodge it.. or you will be crashed by it!")
     roll=randint(1,6)
     print(f"You rolled: {roll}")
@@ -394,7 +409,7 @@ def skill_check_1():
         input("Press Enter to exit the game.")
 
 def scene_4():
-    cls()
+    #cls()
     choice = None
     while choice is None:
         user_input=input("""
@@ -419,7 +434,7 @@ def scene_4():
             """)
             
 def skill_check_2():
-    cls()
+   # cls()
     print("You continue running and suddenly find yourself at the edge of a giant hole in the dungeoun floor!")
     roll=randint(1,6)
     print(f'You rolled: {roll} ')
@@ -435,11 +450,16 @@ def skill_check_2():
         
 def combat_1():
     print("this is combat_1")
-    cls()
+    #cls()
     global character_life
     print("A horrible orc attacks you!")
-    input("Press Enter to combat...")    
-    orc=[10,14]    
+    input("Press Enter to combat...")
+    # create a python list, similar to an array. First is strenth,life of orc.
+    #this is a simple way to create a monster sheet.
+    orc=[10,14]
+    #or not and, otherwise it could go on forever!LOL.
+   # while orc[1] > 0 or character_life > 0:
+    #while orc[1] > 0 or character_life>0:
     while orc[1] > 0:
         char_roll=randint(1,6)
         print(f"You rolled: {char_roll}")
@@ -464,7 +484,11 @@ def combat_1():
         print("You defeated the orc, Congratulations!" )
         input("Press Enter to continue...")
         random.choice(Scene)()
-        input("Press Enter to exit the game")
+        #choice(randomscene)()
+        #input("Press Enter to exit the game")
+        #elif orc[1] < 0:
+   #     print("You defeated the orc, Woohoo!")
+    #    input("Press Enter to exit the game")
     else:
         print("You lost... your friends will never be freed... and you're dead.")
         input("Press Enter to exit the game")
@@ -476,3 +500,5 @@ Skill = [skill_check_1, skill_check_2]
 Fairy = [fairy_1]
 Inventory =[]
 Gold = []
+
+scene_1()
